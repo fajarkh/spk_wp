@@ -63,7 +63,7 @@ class Berita
 
     function readAll()
     {
-        $query = "SELECT wp_berita.*, wp_pengguna.nama_lengkap FROM wp_berita INNER JOIN wp_pengguna ON wp_berita.post_author = wp_pengguna.id_pengguna";
+        $query = "SELECT wp_berita.*, wp_pengguna.username FROM wp_berita INNER JOIN wp_pengguna ON wp_berita.post_author = wp_pengguna.id_user";
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
         return $stmt;

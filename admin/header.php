@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!$_SESSION["loggedin"] || $_SESSION["level"] != '1') {
+	header("location:../index.php");
+}
+
 include "../includes/config.php";
 
 $config = new Config();
@@ -19,12 +24,6 @@ $db = $config->getConnection();
 	<link href="../css/dataTables.bootstrap.min.css" rel="stylesheet">
 	<link type="text/css" href="../css/jquery.toastmessage.css" rel="stylesheet" />
 
-	<!-- Fancybox jQuery -->
-	<script type="text/javascript" src="../fancybox/jquery-1.9.0.min.js"></script>
-	<script type="text/javascript" src="../fancybox/jquery.fancybox.js"></script>
-	<script type="text/javascript" src="../fancybox/main.js"></script>
-	<link rel="stylesheet" type="text/css" href="../fancybox/jquery.fancybox.css" />
-
 	<!-- CKEditor -->
 	<script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
 
@@ -37,7 +36,6 @@ $db = $config->getConnection();
 </head>
 
 <body>
-
 	<nav class="navbar navbar-default navbar-static-top">
 		<div class="container">
 			<!-- Brand and toggle get grouped for better mobile display -->
@@ -52,19 +50,23 @@ $db = $config->getConnection();
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav">
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-left">
 					<li><a href="dashboard.php">Home</a></li>
 					<li><a href="kriteria.php">Kriteria</a></li>
 					<li><a href="bobot.php">Bobot</a></li>
 					<li><a href="alternatif.php">Alternatif</a></li>
-					<!-- <li><a href="rangking.php">Rangking</a></li>
-			<li><a href="laporan.php">Laporan</a></li> -->
 					<li><a href="berita.php">Berita</a></li>
 				</ul>
-
-			</div><!-- /.navbar-collapse -->
-		</div><!-- /.container-fluid -->
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Selamat datang, <?php echo $_SESSION['username']; ?></a></li>
+					<li><a href="../logout.php" class="btn btn-simple"><span class="glyphicon glyphicon-user" aria-hidden="true"> Logout</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
 	</nav>
 
 	<div class="container-fluid">

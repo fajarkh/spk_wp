@@ -35,6 +35,16 @@ class Alternatif{
 		
 		return $stmt;
 	}
+
+	function readAllByUser($idUser){
+
+		$query = "SELECT * FROM ".$this->table_name."  WHERE id_pengguna = ".$idUser." ORDER BY id_alternatif ASC";
+		$stmt = $this->conn->prepare( $query );
+		$stmt->execute();
+		
+		return $stmt;
+	}
+
 	function countAll(){
 
 		$query = "SELECT * FROM ".$this->table_name." ORDER BY id_alternatif ASC";
@@ -107,13 +117,12 @@ class Alternatif{
 			return false;
 		}
 	}
-	function readRekomendasi(){
+	function readRekomendasi($idUser){
 
-		$query = "SELECT * FROM ".$this->table_name." ORDER BY vektor_v DESC LIMIT 0,1";
+		$query = "SELECT * FROM ".$this->table_name." WHERE id_pengguna = ".$idUser." ORDER BY vektor_v DESC LIMIT 0,1";
 		$stmt = $this->conn->prepare( $query );
 		$stmt->execute();
 		
 		return $stmt;
 	}
 }
-?>

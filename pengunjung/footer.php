@@ -66,7 +66,8 @@
     });
 
     $(document).ready(function() {
-
+        var id_user = document.getElementById("userSession").value;
+        console.log(id_user);
         //initiate datatable table data ikan
         var table = $('#tabeldata').DataTable({
             "language": {
@@ -86,7 +87,7 @@
                 "processing": "Memproses..."
             },
             "ajax": {
-                "url": "ajax/data_alternatif.php",
+                "url" : "ajax/data_alternatif.php?id="+id_user,
                 "type": "POST",
                 "dataType": "json",
                 "dataSrc": ""
@@ -255,7 +256,7 @@
                                 show_alert("Berhasil <b>hapus data ikan</b>", 'success');
                                 break;
                             default:
-                                show_alert("Gagal <b>hapus data ikan</b>", 'warning')
+                                show_alert("Gagal <b>hapus data ikan</b>", 'warning');
                                 break;
                         }
                     }
@@ -268,7 +269,9 @@
         $("#btnAnalisa").click(function() {
             var colll = table.columns(2).data().each(function() {});
             var allstt_identifkasi = colll[0];
-            if (allstt_identifkasi.includes("0")) {} else {
+            if (allstt_identifkasi.includes("0")) {
+                show_alert("Terdapat data ikan yang belum di identifikasi", 'info');
+            } else {
                 var analisis_source = '../pengunjung/rangking.php';
                 var frame_analisis = $('#analisisFrame');
                 frame_analisis.attr('src', analisis_source);

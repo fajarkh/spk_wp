@@ -79,7 +79,7 @@ if (isset($_POST['hapus-contengan'])) {
                 <tr>
                     <td style="vertical-align:middle;"><input type="checkbox" value="<?php echo $row['post_id'] ?>" name="checkbox[]" /></td>
                     <td style="vertical-align:middle;"><?php echo $row['post_title'] ?></td>
-                    <td style="vertical-align:middle;"><?php echo $row['nama_lengkap'] ?></td>
+                    <td style="vertical-align:middle;"><?php echo $row['username'] ?></td>
                     <td style="vertical-align:middle;"><?php echo $row['post_date'] ?></td>
                     <td style="width:8%">
                         <!-- <a href="../admin/macam-ubah.php?id=<?php echo $row['post_id'] ?>" class="btn btn-info"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a> -->

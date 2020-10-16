@@ -1,4 +1,13 @@
 <?php
+$user_id = '';
+
+session_start();
+if (!$_SESSION["loggedin"] || $_SESSION["level"] != '0') {
+    header("location:../index.php");
+} else {
+    $user_id = $_SESSION["id_user"];
+}
+
 include "../includes/config.php";
 
 $config = new Config();
@@ -73,13 +82,10 @@ function convertDate($date)
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" type='text/css' />
 
-    <!-- Custom styles for this template -->
-    <!-- <link href="assets/css/blog.css" rel="stylesheet"> -->
-
 </head>
 
 <body>
-
+    <input type="hidden" id="userSession" value="<?php echo $user_id ?>" />
     <div class="wrapper">
         <div class="sidebar" data-color="azure" data-image="assets/img/sidebar-6.jpg">
 
@@ -110,9 +116,9 @@ function convertDate($date)
                         </a>
                     </li>
                     <li class="active-pro">
-                        <a href="#">
-                            <i class="pe-7s-close"></i>
-                            <p>Keluar</p>
+                        <a href="akun.php">
+                            <i class="pe-7s-user"></i>
+                            <p>Akun</p>
                         </a>
                     </li>
 

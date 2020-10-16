@@ -1,27 +1,27 @@
 <?php
+session_start();
 include "../includes/config.php";
 $config = new Config();
 $db = $config->getConnection();
 
+$user_id = $_SESSION['id_user'];
+
 include_once '../includes/alternatif.inc.php';
 $alternatif = new Alternatif($db);
-$stmt1 = $alternatif->readAll();
-$stmt1x = $alternatif->readAll();
-$stmt1y = $alternatif->readAll();
-$stmt_alternatif_recom = $alternatif->readRekomendasi();
+$stmt_alternatif = $alternatif->readAllByUser($user_id);
+$stmt_alternatifx = $alternatif->readAllByUser($user_id);
+$stmt_alternatify = $alternatif->readAllByUser($user_id);;
+$stmt_alternatif_recom = $alternatif->readRekomendasi($user_id);
 
 include_once '../includes/bobot.inc.php';
 $bobot = new Bobot($db);
-$stmt2 = $bobot->readAll();
-$stmt2x = $bobot->readAll();
-$stmt2y = $bobot->readAll();
-$stmt2yx = $bobot->readAll();
+$stmt_bobot = $bobot->readAll();
+$stmt_bobotx = $bobot->readAll();
+$stmt_boboty = $bobot->readAll();
+$stmt_bobotyx = $bobot->readAll();
 
 include_once '../includes/rangking.inc.php';
 $rangking = new Rangking($db);
-$stmt = $rangking->readKhusus();
-$stmtx = $rangking->readKhusus();
-$stmty = $rangking->readKhusus();
 ?>
 
 <!doctype html>
@@ -94,11 +94,11 @@ $stmty = $rangking->readKhusus();
 											<thead>
 												<tr>
 													<th rowspan="2" style="vertical-align: middle" class="text-center">Alternatif</th>
-													<th colspan="<?php echo $stmt2x->rowCount(); ?>" class="text-center">Kriteria</th>
+													<th colspan="<?php echo $stmt_bobotx->rowCount(); ?>" class="text-center">Kriteria</th>
 												</tr>
 												<tr>
 													<?php
-													while ($row2x = $stmt2x->fetch(PDO::FETCH_ASSOC)) {
+													while ($row2x = $stmt_bobotx->fetch(PDO::FETCH_ASSOC)) {
 													?>
 														<th><?php echo $row2x['nama_kriteria'] ?><br />(<?php echo $row2x['tipe_kriteria'] ?>)</th>
 													<?php
@@ -111,7 +111,7 @@ $stmty = $rangking->readKhusus();
 												<tr>
 													<th>Bobot</th>
 													<?php
-													while ($row2y = $stmt2y->fetch(PDO::FETCH_ASSOC)) {
+													while ($row2y = $stmt_boboty->fetch(PDO::FETCH_ASSOC)) {
 													?>
 														<td>
 															<?php
@@ -123,14 +123,14 @@ $stmty = $rangking->readKhusus();
 													?>
 												</tr>
 												<?php
-												while ($row1x = $stmt1x->fetch(PDO::FETCH_ASSOC)) {
+												while ($row1x = $stmt_alternatifx->fetch(PDO::FETCH_ASSOC)) {
 												?>
 													<tr>
 														<th><?php echo $row1x['nama_alternatif'] ?></th>
 														<?php
 														$ax = $row1x['id_alternatif'];
-														$stmtrx = $rangking->readR($ax);
-														while ($rowrx = $stmtrx->fetch(PDO::FETCH_ASSOC)) {
+														$stmt_rangkingrx = $rangking->readR($ax);
+														while ($rowrx = $stmt_rangkingrx->fetch(PDO::FETCH_ASSOC)) {
 														?>
 															<td>
 																<?php
@@ -155,14 +155,14 @@ $stmty = $rangking->readKhusus();
 											<thead>
 												<tr>
 													<th rowspan="2" style="vertical-align: middle" class="text-center">Alternatif</th>
-													<th colspan="<?php echo $stmt2->rowCount(); ?>" class="text-center">Kriteria</th>
+													<th colspan="<?php echo $stmt_bobot->rowCount(); ?>" class="text-center">Kriteria</th>
 													<th rowspan="2" style="vertical-align: middle" class="text-center">Vektor S</th>
 													<th rowspan="2" style="vertical-align: middle" class="text-center">Vektor V</th>
 												</tr>
 												<tr>
 
 													<?php
-													while ($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+													while ($row2 = $stmt_bobot->fetch(PDO::FETCH_ASSOC)) {
 													?>
 														<th><?php echo $row2['nama_kriteria'] ?></th>
 
@@ -171,14 +171,14 @@ $stmty = $rangking->readKhusus();
 											</thead>
 											<tbody>
 												<?php
-												while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)) {
+												while ($row1 = $stmt_alternatif->fetch(PDO::FETCH_ASSOC)) {
 												?>
 													<tr>
 														<th><?php echo $row1['nama_alternatif'] ?></th>
 														<?php
 														$a = $row1['id_alternatif'];
-														$stmtr = $rangking->readR($a);
-														while ($rowr = $stmtr->fetch(PDO::FETCH_ASSOC)) {
+														$stmt_rangkingr = $rangking->readR($a);
+														while ($rowr = $stmt_rangkingr->fetch(PDO::FETCH_ASSOC)) {
 															$b = $rowr['id_kriteria'];
 															$tipe = $rowr['tipe_kriteria'];
 															$bobot = $rowr['hasil_bobot'];

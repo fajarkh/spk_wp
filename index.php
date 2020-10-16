@@ -1,3 +1,37 @@
+<?php
+
+session_start();
+if (isset($_SESSION["loggedin"])) {
+  if ($_SESSION["level"] == 1) {
+    header("location: admin/dashboard.php");
+    exit;
+  } else {
+    header("location: pengunjung/dashboard.php");
+    exit;
+  }
+}
+?>
+<?php
+include_once 'includes/config.php';
+$config = new Config();
+$db = $config->getConnection();
+
+if (isset($_POST['form_login'])) {
+  include_once 'includes/login.inc.php';
+  $login = new Login($db);
+
+  $login->email = $_POST['login_email'];
+  $login->password = $_POST['login_password'];
+  if ($login->login()) {
+  } else { ?>
+    <script type="text/javascript">
+    alert('Email atau Password salah')
+    </script>
+<?php
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,13 +52,16 @@
   <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
-  <!-- Custom styles for this template -->
+  <!-- Custom styles -->
   <link href="css/landing-page.min.css" rel="stylesheet">
-
   <link href="css/login-register.css" rel="stylesheet" />
-  <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
-	<script src="js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="js/login-register.js" type="text/javascript"></script>
+
+  <!-- Custom JS -->
+  <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+  <script src="js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="vendor/jquery/jquery.min.js" type="text/javascript"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/login-register.js" type="text/javascript"></script>
 
 </head>
 
@@ -34,31 +71,28 @@
     <div class="modal-dialog login animated">
       <div class="modal-content">
         <div class="modal-header">
-        <h4 class="modal-title">Masuk Dengan</h4>
+          <h4 class="modal-title">Masuk</h4>
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         </div>
         <div class="modal-body">
           <div class="box">
             <div class="content">
-              <div class="social">
+              <!-- <div class="social">
                 <a id="google_login" href="#">
                   <i class="fab fa-google fa-2x fa-fw"></i>
                 </a>
-                <a id="facebook_login" href="#">
-                  <i class="fab fa-facebook fa-2x fa-fw"></i>
-                </a>
-              </div>
-              <div class="division">
+              </div> -->
+              <!-- <div class="division">
                 <div class="line l"></div>
                 <span>atau</span>
                 <div class="line r"></div>
-              </div>
+              </div> -->
               <div class="error"></div>
               <div class="form loginBox">
-                <form method="" action="" accept-charset="UTF-8">
-                  <input id="email" class="form-control" type="text" placeholder="Email" name="email">
-                  <input id="password" class="form-control" type="password" placeholder="Password" name="password">
-                  <input class="btn btn-default btn-login" type="button" value="Masuk" onclick="loginAjax()">
+                <form method="post" accept-charset="UTF-8" id="login-form">
+                  <input id="login_email" class="form-control" type="text" placeholder="Email" name="login_email" autofocus>
+                  <input id="login_password" class="form-control" type="password" placeholder="Password" name="login_password">
+                  <input class="btn btn-default btn-login" type="submit" value="Masuk" name="form_login">
                 </form>
               </div>
             </div>
@@ -67,10 +101,10 @@
             <div class="content registerBox" style="display:none;">
               <div class="form">
                 <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
-                  <input id="email" class="form-control" type="text" placeholder="Email" name="email">
-                  <input id="password" class="form-control" type="password" placeholder="Password" name="password">
+                  <input id="regis_email" class="form-control" type="text" placeholder="Email" name="regis_email">
+                  <input id="regis_password" class="form-control" type="password" placeholder="Password" name="regis_password">
                   <input id="password_confirmation" class="form-control" type="password" placeholder="Ulang Password" name="password_confirmation">
-                  <input class="btn btn-default btn-register" type="button" value="Buat Akun" name="commit">
+                  <input class="btn btn-default btn-register" type="submit" value="Buat Akun" name="commit">
                 </form>
               </div>
             </div>
@@ -253,10 +287,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {

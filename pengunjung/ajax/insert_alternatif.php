@@ -10,7 +10,8 @@ $config = new Config();
 $conn = $config->getConnection();
 
 $status = '';
-$idUser = '1';
+session_start();
+$id_user = $_SESSION['id_user'];
 
 if (isset($_POST['na']) && isset($_POST['d'])) {
     if (!empty($_POST['na']) && !empty($_POST['na'])) {
@@ -18,7 +19,7 @@ if (isset($_POST['na']) && isset($_POST['d'])) {
         $query .= " VALUES(null,:id_pengguna,:sts_identifikasi,:nama_alternatif,:deskripsi,:vektor_s,:vektor_v)";
 
         $stmt = $conn->prepare($query);
-        $stmt->bindValue(':id_pengguna', $idUser, PDO::PARAM_INT);
+        $stmt->bindValue(':id_pengguna', $id_user, PDO::PARAM_INT);
         $stmt->bindValue(':sts_identifikasi', 0, PDO::PARAM_INT);
         $stmt->bindValue(':nama_alternatif', htmlspecialchars(strip_tags($_POST['na'])), PDO::PARAM_STR);
         $stmt->bindValue(':deskripsi', htmlspecialchars(strip_tags($_POST['na'])), PDO::PARAM_STR);
