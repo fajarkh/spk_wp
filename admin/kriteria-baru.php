@@ -68,8 +68,8 @@ if ($_POST) {
                     <div class="form-group">
                         <table class="table table-bordered" id="dynamic_field">
                             <tr>
-                                <td><input class="form-control" name="nama_macam_bobot[]" type="text" placeholder="nama macam bobot" required></td>
-                                <td><input class="form-control" name="nilai_macam_bobot[]" type="text" placeholder="nilai macam bobot" required></td>
+                                <td><input class="form-control" name="nama_macam_bobot[]" type="text" placeholder="nama variabel bobot" required></td>
+                                <td><input class="form-control" name="nilai_macam_bobot[]" type="text" placeholder="nilai variabel bobot" required></td>
                                 <td><button class="btn btn-success btn-add" type="button" name="add" id="add">
                                         <span class="glyphicon glyphicon-plus"></span>
                                     </button></td>
@@ -99,7 +99,7 @@ if ($_POST) {
         var i = 1;
         $('#add').click(function() {
             i++;
-            $('#dynamic_field').append('<tr id="row' + i + '"><td><input class="form-control" name="nama_macam_bobot[]" type="text" placeholder="nama macam bobot" required></td><td><input class="form-control" name="nilai_macam_bobot[]" type="text" placeholder="nilai macam bobot" required></td><td><button class="btn btn-danger btn-remove" type="button" name="remove" id="' + i + '"><span class="glyphicon glyphicon-minus"></span></button></td></tr>')
+            $('#dynamic_field').append('<tr id="row' + i + '"><td><input class="form-control" name="nama_macam_bobot[]" type="text" placeholder="nama Variabel bobot" required></td><td><input class="form-control" name="nilai_macam_bobot[]" type="text" placeholder="nilai macam bobot" required></td><td><button class="btn btn-danger btn-remove" type="button" name="remove" id="' + i + '"><span class="glyphicon glyphicon-minus"></span></button></td></tr>')
         });
         $(document).on('click', '.btn-remove', function() {
             var button_id = $(this).attr("id");

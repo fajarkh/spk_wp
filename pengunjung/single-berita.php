@@ -8,6 +8,14 @@ $berita->post_id = $post_id;
 
 $berita->readOne();
 ?>
+
+<style>
+    .row {
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+</style>
+
 <!-- Page Content -->
 <div class="container">
 

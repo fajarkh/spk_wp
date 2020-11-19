@@ -67,13 +67,13 @@ if ($_POST) {
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Tambah Macam Kriteria</h4>
+                    <h4 class="modal-title">Tambah Variabel Kriteria</h4>
                 </div>
                 <div class="modal-body">
-                    <label>Nama Macam</label>
+                    <label>Nama Variabel Kriteria</label>
                     <input type="text" name="nab" id="nab" class="form-control" />
                     <br />
-                    <label>Nilai Macam</label>
+                    <label>Nilai Variabel Kriteria</label>
                     <input type="text" name="nib" id="nib" class="form-control" />
                 </div>
                 <div class="modal-footer">
@@ -94,7 +94,7 @@ if ($_POST) {
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-6 text-left">
-                        <h3>Ubah Macam Kriteria</h3>
+                        <h3>Ubah Variabel Kriteria</h3>
                     </div>
                     <div class="col-md-6 text-right">
                         <h3>
@@ -112,7 +112,7 @@ if ($_POST) {
                                 <thead>
                                     <tr>
                                         <th width="10px"><input type="checkbox" name="select-all" id="select-all" /></th>
-                                        <th class="text-center">Nama Macam Bobot</th>
+                                        <th class="text-center">Nama Variabel Bobot</th>
                                         <th class="text-center">Nilai</th>
                                         <th class="text-center" width="70px" id="aksi">Aksi</th>
                                     </tr>
@@ -172,7 +172,7 @@ if ($_POST) {
     $(document).ready(function() {
         $('#add_macam').click(function() {
             $('#user_form')[0].reset();
-            $('.modal-title').text("Tambah Macam bobot kriteria");
+            $('.modal-title').text("Tambah Variabel bobot kriteria");
             $('.modal-body').show();
             $('#action').val("Add");
             $('#operation').val("Add");
@@ -183,7 +183,7 @@ if ($_POST) {
             var id_macam = $(this).attr('val-id');
             var macam = $(this).attr('val-macam');
             var nilai = $(this).attr('val-nilai');
-            $('.modal-title').text("Ubah Macam Kriteria");
+            $('.modal-title').text("Ubah Variabel Kriteria");
             $('.modal-body').show();
             $('#nab').val(macam);
             $('#nib').val(nilai);
@@ -195,7 +195,7 @@ if ($_POST) {
 
         $(document).on('click', '#delete', function(){
             var id_macam = $(this).attr('val-id');
-            $('.modal-title').text("Yakin hapus macam kriteria ini ?");
+            $('.modal-title').text("Yakin hapus variabel kriteria ini ?");
             $('.modal-body').hide();
             $('#id_macam').val(id_macam);
             $('#action').val("Hapus");

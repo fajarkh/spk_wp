@@ -44,8 +44,8 @@ if(isset($_POST['hapus-contengan'])){
 			<h4>Data Alternatif</h4>
 		</div>
 		<div class="col-md-6 text-right">
-            <button type="submit" name="hapus-contengan" class="btn btn-danger">Hapus Contengan</button>
-			<button type="button" onclick="location.href='alternatif-baru.php'" class="btn btn-primary">Tambah Data</button>
+            <!-- <button type="submit" name="hapus-contengan" class="btn btn-danger">Hapus Contengan</button>
+			<button type="button" onclick="location.href='alternatif-baru.php'" class="btn btn-primary">Tambah Data</button> -->
 		</div>
 	</div>
 	<br/>

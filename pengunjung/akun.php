@@ -42,14 +42,14 @@ include_once '../includes/login.inc.php';
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Alamat</label>
                                         <input type="text" class="form-control" placeholder="Alamat" value="" name="address" disabled>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- <button type="submit" class="btn btn-info btn-fill pull-right">Perbaharui Informasi</button> -->
                             <div class="clearfix"></div>
                         </form>
@@ -64,9 +64,9 @@ include_once '../includes/login.inc.php';
                     <div class="content">
                         <div class="author">
                             <a href="#">
-                                <img class="avatar border-gray" src="../images/avatar.jpg" alt="..." />
+                                <img class="avatar border-gray" src="assets/img/default-avatar.png" alt="..." />
 
-                                <h4 class="title"><?php echo $_SESSION['first_name'].' '.$_SESSION['last_name']  ?><br />
+                                <h4 class="title"><?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name']  ?><br />
                                     <small><?php echo $_SESSION['email'] ?> </small>
                                 </h4>
                             </a>
@@ -74,7 +74,7 @@ include_once '../includes/login.inc.php';
                     </div>
                     <hr>
                     <div class="text-center">
-                    <a href="../logout.php" class="btn btn-info btn-fill">Logout</a>
+                        <a href="../logout.php" class="btn btn-info btn-fill">Logout</a>
                     </div>
                 </div>
             </div>

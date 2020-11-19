@@ -7,7 +7,7 @@ $stmt = $berita->readAll();
 
 <div class="container">
     <div class="row">
-</br>
+        </br>
         <?php
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         ?>

@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 if (isset($_SESSION["loggedin"])) {
   if ($_SESSION["level"] == 1) {
@@ -16,21 +15,40 @@ include_once 'includes/config.php';
 $config = new Config();
 $db = $config->getConnection();
 
-if (isset($_POST['form_login'])) {
-  include_once 'includes/login.inc.php';
-  $login = new Login($db);
+include_once 'includes/login.inc.php';
+$login = new Login($db);
 
+if (isset($_POST['form_login'])) {
   $login->email = $_POST['login_email'];
   $login->password = $_POST['login_password'];
   if ($login->login()) {
   } else { ?>
     <script type="text/javascript">
-    alert('Email atau Password salah')
+      alert('Email atau Password salah')
+    </script>
+  <?php
+  }
+}
+
+if (isset($_POST['form_regis'])) {
+  $login->email = $_POST['regis_email'];
+  $login->password = $_POST['regis_password'];
+  $login->first_name = $_POST['first_name'];
+  $login->last_name = $_POST['last_name'];
+  if ($login->register()) { ?>
+    <script type="text/javascript">
+      alert('Akun anda berhasil dibuat. Silahkan Masuk')
+    </script>
+
+  <?php  } else { ?>
+    <script type="text/javascript">
+      alert('Email atau Password salah')
     </script>
 <?php
   }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -100,11 +118,13 @@ if (isset($_POST['form_login'])) {
           <div class="box">
             <div class="content registerBox" style="display:none;">
               <div class="form">
-                <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                <form method="POST" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
+                  <input id="first_name" class="form-control" type="text" placeholder="Nama depan" name="first_name">
+                  <input id="last_name" class="form-control" type="text" placeholder="Nama Belakang" name="last_name">
                   <input id="regis_email" class="form-control" type="text" placeholder="Email" name="regis_email">
                   <input id="regis_password" class="form-control" type="password" placeholder="Password" name="regis_password">
                   <input id="password_confirmation" class="form-control" type="password" placeholder="Ulang Password" name="password_confirmation">
-                  <input class="btn btn-default btn-register" type="submit" value="Buat Akun" name="commit">
+                  <input class="btn btn-default btn-register" type="submit" value="Buat Akun" name="form_regis">
                 </form>
               </div>
             </div>
@@ -169,7 +189,7 @@ if (isset($_POST['form_login'])) {
               <i class="icon-screen-desktop m-auto text-primary"></i>
             </div>
             <h3>Identifikasi</h3>
-            <p class="lead mb-0">deskrisi</p>
+            <p class="lead mb-0"></p>
           </div>
         </div>
         <div class="col-lg-4">
@@ -178,7 +198,7 @@ if (isset($_POST['form_login'])) {
               <i class="icon-layers m-auto text-primary"></i>
             </div>
             <h3>Validasi Data Ikan</h3>
-            <p class="lead mb-0">Featuring the latest build of the new Bootstrap 4 framework!</p>
+            <p class="lead mb-0"></p>
           </div>
         </div>
         <div class="col-lg-4">
@@ -187,36 +207,8 @@ if (isset($_POST['form_login'])) {
               <i class="icon-check m-auto text-primary"></i>
             </div>
             <h3>Dapatkan Rekomedasi Pembibitan</h3>
-            <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p>
+            <p class="lead mb-0"></p>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Image Showcases -->
-  <section class="showcase">
-    <div class="container-fluid p-0">
-      <div class="row no-gutters">
-
-        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('images/bg-showcase-1.jpg');"></div>
-        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-          <h2>Fully Responsive Design</h2>
-          <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will look great on any device, whether it's a phone, tablet, or desktop the page will behave responsively!</p>
-        </div>
-      </div>
-      <div class="row no-gutters">
-        <div class="col-lg-6 text-white showcase-img" style="background-image: url('images/bg-showcase-2.jpg');"></div>
-        <div class="col-lg-6 my-auto showcase-text">
-          <h2>Updated For Bootstrap 4</h2>
-          <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 4 is leading the way in mobile responsive web development! All of the themes on Start Bootstrap are now using Bootstrap 4!</p>
-        </div>
-      </div>
-      <div class="row no-gutters">
-        <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url('images/bg-showcase-3.jpg');"></div>
-        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-          <h2>Easy to Use &amp; Customize</h2>
-          <p class="lead mb-0">Landing Page is just HTML and CSS with a splash of SCSS for users who demand some deeper customization options. Out of the box, just add your content and images, and your new landing page will be ready to go!</p>
         </div>
       </div>
     </div>
@@ -268,7 +260,10 @@ if (isset($_POST['form_login'])) {
               <a href="#">Privacy Policy</a>
             </li> -->
           </ul>
-          <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2020. All Rights Reserved.</p>
+          <p class="text-muted small mb-4 mb-lg-0">&copy;
+            <script>
+              document.write(new Date().getFullYear())
+            </script> - SPK</a> Rekomendasi ikan lele. All Rights Reserved.</p>
         </div>
         <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
           <ul class="list-inline mb-0">
@@ -291,6 +286,20 @@ if (isset($_POST['form_login'])) {
   <script type="text/javascript">
     $(document).ready(function() {
       openLoginModal();
+    });
+
+    function checkPasswordMatch() {
+      var password = $("#regis_password").val();
+      var confirmPassword = $("#password_confirmation").val();
+      if (password != confirmPassword) {
+        $('.error').addClass('alert alert-danger').html('password konfirmasi tidak sama');
+      } else {
+        $('.error').removeClass('alert alert-danger').html('');
+      }
+    }
+
+    $(document).ready(function() {
+      $("#password_confirmation").keyup(checkPasswordMatch);
     });
   </script>
 

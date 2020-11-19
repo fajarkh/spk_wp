@@ -56,7 +56,7 @@ if (isset($_POST['hapus-contengan'])) {
                 <th width="10px"><input type="checkbox" name="select-all" id="select-all" /></th>
                 <th>Nama Kriteria</th>
                 <th>Tipe Kriteria</th>
-                <th>Macam Bobot</th>
+                <th>Variabel Kriteria</th>
                 <th width="100px">Aksi</th>
             </tr>
         </thead>
@@ -66,7 +66,7 @@ if (isset($_POST['hapus-contengan'])) {
                 <th><input type="checkbox" name="select-all2" id="select-all2" /></th>
                 <th>Nama Kriteria</th>
                 <th>Tipe Kriteria</th>
-                <th>Macam Bobot</th>
+                <th>Variabel Kriteria</th>
                 <th>Aksi</th>
             </tr>
         </tfoot>

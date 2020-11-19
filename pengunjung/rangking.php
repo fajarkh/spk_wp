@@ -12,6 +12,7 @@ $stmt_alternatif = $alternatif->readAllByUser($user_id);
 $stmt_alternatifx = $alternatif->readAllByUser($user_id);
 $stmt_alternatify = $alternatif->readAllByUser($user_id);;
 $stmt_alternatif_recom = $alternatif->readRekomendasi($user_id);
+$stmt_alternatif_recom2 = $alternatif->readRekomendasi2($user_id);
 
 include_once '../includes/bobot.inc.php';
 $bobot = new Bobot($db);
@@ -29,7 +30,7 @@ $rangking = new Rangking($db);
 
 <head>
 	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="assets/img/favicon.ico">
+	<link rel="icon" type="image/png" href="../images/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<title>Perangkingan</title>
@@ -46,6 +47,25 @@ $rangking = new Rangking($db);
 	<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
 	<link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet" type='text/css' />
 
+	<style>
+		.notify-badge {
+			position: absolute;
+			right: 40px;
+			top: 120px;
+			background: cyan;
+			text-align: center;
+			border-radius: 30px 30px 30px 30px;
+			color: white;
+			padding: 5px 10px;
+			font-size: 16px;
+		}
+
+		.item {
+			position: relative;
+			padding-top: 20px;
+			display: inline-block;
+		}
+	</style>
 </head>
 
 <body>
@@ -75,14 +95,67 @@ $rangking = new Rangking($db);
 									<!-- Tab Ringkasan Rekomendasi -->
 									<div role="tabpanel" class="tab-pane active" id="ringkasan">
 										<br />
-										<h4>Ringkasan Rekomendasi</h4>
-										<br />
 										<?php
 										while ($row5 = $stmt_alternatif_recom->fetch(PDO::FETCH_ASSOC)) {
 										?>
-											<p><?php echo $row5['nama_alternatif'] ?></p>
+											<div class="card card-user">
+												<div class="image">
+													<img src="../images/bg2.jpg" alt="..." />
+												</div>
+												<div class="content">
+													<div class="author">
+														<div class="item">
+															<a href="#">
+																<img class="avatar border-gray" src="../images/lele.jpg" alt="..." />
+																<span class="notify-badge">1</span>
+																<h4 class="title"><?php echo $row5['nama_alternatif'] ?>
+																	<br />
+																	<small> id : <?php echo $row5['id_alternatif'] ?></small>
+																</h4>
+															</a>
+														</div>
+													</div>
+													<p class="description text-center"> "<?php echo $row5['deskripsi'] ?>"
+													</p>
+												</div>
+												<hr>
+												<div class="text-center">
+													<a href="#" class="btn btn-simple"><i class="fa fa-bolt"></i>Vektor S : <?php echo $row5['vektor_s'] ?></a>
+													<a href="#" class="btn btn-simple"><i class="fa fa-bolt"></i>Vektor V : <?php echo $row5['vektor_v'] ?></a>
 
+												</div>
+											</div>
 										<?php } ?>
+										<?php
+										$num = 2;
+										while ($row6 = $stmt_alternatif_recom2->fetch(PDO::FETCH_ASSOC)) {  ?>
+											<div class="col-xs-12 col-sm-12 col-md-4">
+												<div class="panel panel-default">
+													<div class="panel-heading">
+														<h3 class="panel-title"><?php echo "#" . $num . " " . $row6['nama_alternatif'] ?></h3>
+													</div>
+													<div class="panel-body">
+
+														<table class="table table-bordered">
+															<tr>
+																<th>id</th>
+																<th>Vektor S</th>
+																<th>Vektor v</th>
+															</tr>
+
+															<tr>
+																<td><?php echo $row6['id_alternatif'] ?></td>
+																<td><?php echo $row6['vektor_s'] ?></td>
+																<td><?php echo $row6['vektor_v'] ?></td>
+															</tr>
+														</table>
+													</div>
+												</div>
+											</div>
+										<?php
+											$num = $num += 1;
+										} ?>
+
 									</div>
 									<!-- End Tab Ringkasan Rekomendasi -->
 
@@ -240,6 +313,8 @@ $rangking = new Rangking($db);
 <script src="../js/jquery.dataTables.min.js"></script>
 <script src="../js/dataTables.bootstrap.min.js"></script>
 <script src="../js/popper.min.js"></script>
+<!-- <script src="..js/moment.min.js" type="text/javascript"></script> -->
+<script src="../js/chartjs/Chart.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {

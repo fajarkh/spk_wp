@@ -53,9 +53,9 @@ function submitForm() {
 
 }
 
-function shakeModal() {
+function shakeModal(message) {
     $('#loginModal .modal-dialog').addClass('shake');
-    $('.error').addClass('alert alert-danger').html("Email atau Password anda salah");
+    $('.error').addClass('alert alert-danger').html(message);
     $('input[type="password"]').val('');
     setTimeout(function () {
         $('#loginModal .modal-dialog').removeClass('shake');

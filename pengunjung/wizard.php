@@ -60,7 +60,7 @@ $stmt_kriteria1 = $kriteria->readAll();
 								<!--        You can switch " data-color="azure" "  with one of the next bright colors: "blue", "green", "orange", "red"           -->
 
 								<div class="wizard-header">
-									<h3 class="wizard-title"> Ubah Identifikasi Ikan</h3>
+									<h3 class="wizard-title">Identifikasi Ikan</h3>
 									<p class="category"></p>
 								</div>
 								<div class="wizard-navigation">
@@ -92,7 +92,7 @@ $stmt_kriteria1 = $kriteria->readAll();
 														<select class="form-control" id="sel<?php echo $row_kriteria['id_kriteria'] ?>" required>
 															<option disabled="" selected="">- pilih pilihan -</option>
 															<?php
-															$macam = explode(", ", $row_kriteria['macam']);;
+															$macam = explode(", ", $row_kriteria['macam']);
 															$nilai = explode(", ", $row_kriteria['nilai']);
 															$combined = array_combine($nilai, $macam);
 															foreach ($combined as $key => $value) {
@@ -198,7 +198,7 @@ $stmt_kriteria1 = $kriteria->readAll();
 			url_wizard = "ajax/insert_rangking.php"
 		}
 		if (status == 1) {
-			$('.wizard-title').text("Ubah data identifikasi ikan");
+			$('.wizard-title').text("identifikasi ikan");
 			url_wizard = "ajax/update_rangking.php"
 		}
 
