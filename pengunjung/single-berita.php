@@ -1,8 +1,8 @@
 <?php
 include_once '../pengunjung/header.php';
-include_once '../includes/berita.inc.php';
+include_once '../includes/rekomendasi.inc.php';
 
-$berita = new Berita($db);
+$berita = new Rekomendasi($db);
 $post_id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: missing ID.');
 $berita->post_id = $post_id;
 

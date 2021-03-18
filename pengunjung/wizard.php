@@ -12,7 +12,6 @@ $kriteria = new Kriteria($db);
 $stmt_kriteria = $kriteria->readAll();
 $stmt_kriteria1 = $kriteria->readAll();
 
-
 ?>
 <!doctype html>
 <html lang="en">
@@ -198,7 +197,7 @@ $stmt_kriteria1 = $kriteria->readAll();
 			url_wizard = "ajax/insert_rangking.php"
 		}
 		if (status == 1) {
-			$('.wizard-title').text("identifikasi ikan");
+			$('.wizard-title').text("Identifikasi ikan");
 			url_wizard = "ajax/update_rangking.php"
 		}
 

@@ -62,7 +62,7 @@ if ($_POST) {
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="kp">Teks Peryanyaan</label>
+                        <label for="kp">Teks Pertanyaan</label>
                         <input type="text" class="form-control" id="kp" name="kp" required>
                     </div>
                     <div class="form-group">

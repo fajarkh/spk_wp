@@ -1,16 +1,17 @@
 <?php
 session_start();
-include "../includes/config.php";
+include '../includes/config.php';
 $config = new Config();
 $db = $config->getConnection();
 
 $user_id = $_SESSION['id_user'];
+//$user_id = 1;
 
 include_once '../includes/alternatif.inc.php';
 $alternatif = new Alternatif($db);
 $stmt_alternatif = $alternatif->readAllByUser($user_id);
 $stmt_alternatifx = $alternatif->readAllByUser($user_id);
-$stmt_alternatify = $alternatif->readAllByUser($user_id);;
+$stmt_alternatify = $alternatif->readAllByUser($user_id);
 $stmt_alternatif_recom = $alternatif->readRekomendasi($user_id);
 $stmt_alternatif_recom2 = $alternatif->readRekomendasi2($user_id);
 

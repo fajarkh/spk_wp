@@ -123,9 +123,6 @@ class Kriteria
 		} else {
 			return false;
 		}
-		//		print_r($stmt);
-		//$stmt->execute();
-		// print_r($stmt);
 	}
 	function hapusell($ax)
 	{

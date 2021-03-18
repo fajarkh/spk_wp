@@ -94,6 +94,9 @@ if (isset($_POST['hapus-contengan'])) {
 
     </table>
 </form>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../js/jquery-1.11.3.min.js"></script>
 <?php
 include_once '../admin/footer.php';
 ?>

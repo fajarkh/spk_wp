@@ -105,7 +105,7 @@ class Macam{
 		$stmt = $this->conn->prepare($query);
 		$stmt->bindParam(1, $this->id);
 
-		if($result = $stmt->execute()){
+		if($stmt->execute()){
 			return true;
 		}else{
 			return false;
@@ -117,7 +117,7 @@ class Macam{
 		
 		$stmt = $this->conn->prepare($query);
 
-		if($result = $stmt->execute()){
+		if($stmt->execute()){
 			return true;
 		}else{
 			return false;

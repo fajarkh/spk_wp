@@ -12,7 +12,7 @@ include "../../includes/config.php";
 $config = new Config();
 $conn = $config->getConnection();
 
-$query = "SELECT id_alternatif, nama_alternatif, sts_identifikasi FROM wp_alternatif WHERE id_pengguna = ?";
+$query = "SELECT id_alternatif, nama_alternatif, sts_identifikasi,vektor_v, vektor_s FROM wp_alternatif WHERE id_pengguna = ?";
 $stmt = $conn->prepare($query);
 $stmt->bindParam(1, $id_user);
 $stmt->execute();
@@ -22,7 +22,9 @@ if ($stmt->rowCount() > 0) {
         $post_data = [
             'id_alternatif' => $row['id_alternatif'],
             'nama_alternatif' => $row['nama_alternatif'],
-            'sts_identifikasi' => $row['sts_identifikasi']
+            'sts_identifikasi' => $row['sts_identifikasi'],
+            'vektor_v' => $row['vektor_v'],
+            'vektor_s' => $row['vektor_s']
         ];
         array_push($post_array, $post_data);
     }

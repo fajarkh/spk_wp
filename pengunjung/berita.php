@@ -1,7 +1,7 @@
 <?php
 include_once '../pengunjung/header.php';
-include_once '../includes/berita.inc.php';
-$berita = new Berita($db);
+include_once '../includes/rekomendasi.inc.php';
+$berita = new Rekomendasi($db);
 $stmt = $berita->readAll();
 ?>
 

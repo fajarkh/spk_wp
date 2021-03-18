@@ -87,7 +87,7 @@
                 "processing": "Memproses..."
             },
             "ajax": {
-                "url" : "ajax/data_alternatif.php?id="+id_user,
+                "url": "ajax/data_alternatif.php?id=" + id_user,
                 "type": "POST",
                 "dataType": "json",
                 "dataSrc": ""
@@ -115,6 +115,7 @@
                     "orderable": false,
                     "render": function(data, type, row) {
                         var bindHtml = ' <td class="td-actions text-center">';
+                        bindHtml +=  row['sts_identifikasi'] == '1' ? '<a href="../pengunjung/single-rangking.php?vektor_s=' + row['vektor_s'] + '" rel="tooltip" title="Hasil Rekomendasi" class="btn btn-success btn-simple btn-xs"><i class="fa fa-list-ol"></i></a>' : '';
                         bindHtml += '<a href="../pengunjung/wizard.php?id=' + data + '&status=' + row['sts_identifikasi'] + '" rel="tooltip" title="Identifikasi" class="btn btn-info btn-simple btn-xs"><i class="fa fa-bolt"></i></a>';
                         bindHtml += '<a href="#IkanModal" data-alternatif-id="' + data + '" data-toggle="modal" data-backdrop="false" modal-action="update" rel="tooltip" title="Edit" class="btn btn-warning btn-simple btn-xs"><i class="fa fa-edit"></i>';
                         bindHtml += '<a href="javascript:void(0)" rel="tooltip" id="' + data + '" title="Hapus" class="btn btn-danger btn-simple btn-xs hapus"><i class="fa fa-trash-o"></i></a>';
@@ -165,10 +166,10 @@
                         switch (data) {
                             case 'success':
                                 table.ajax.reload();
-                                show_alert("Berhasil <b>ubah data ikan</b>", 'success');
+                                show_alert("Berhasil <b>ubah data</b>", 'success');
                                 break;
                             default:
-                                show_alert("Gagal <b>ubah data ikan</b>", 'warning');
+                                show_alert("Gagal <b>ubah data</b>", 'warning');
                                 break;
                         }
                     }
@@ -183,7 +184,7 @@
             var modal = $(this);
             if ($(event.relatedTarget).attr('modal-action') == 'update') {
                 document.getElementById("operation").value = "update";
-                modal.find('h5#IkanModalLabel').text('Ubah Data Ikan');
+                modal.find('h5#IkanModalLabel').text('Ubah Data');
                 $('#ActionModalIkan').html('Ubah');
                 var id = $(event.relatedTarget).data('alternatif-id');
                 $.ajax({
@@ -205,7 +206,7 @@
 
             if ($(event.relatedTarget).attr('modal-action') == 'insert') {
                 document.getElementById("operation").value = "insert";
-                modal.find('h5#IkanModalLabel').text('Tambah Data Ikan');
+                modal.find('h5#IkanModalLabel').text('Tambah Data');
                 $('#ActionModalIkan').html('Tambah');
             }
         });
@@ -253,10 +254,10 @@
                         switch (data) {
                             case 'success':
                                 table.ajax.reload();
-                                show_alert("Berhasil <b>hapus data ikan</b>", 'success');
+                                show_alert("Berhasil <b>hapus data</b>", 'success');
                                 break;
                             default:
-                                show_alert("Gagal <b>hapus data ikan</b>", 'warning');
+                                show_alert("Gagal <b>hapus data</b>", 'warning');
                                 break;
                         }
                     }
@@ -270,9 +271,9 @@
             var colll = table.columns(2).data().each(function() {});
             var allstt_identifkasi = colll[0];
             if (allstt_identifkasi.includes("0")) {
-                show_alert("Terdapat data ikan yang belum di identifikasi", 'info');
+                show_alert("Terdapat data yang belum di identifikasi", 'info');
             } else {
-                var analisis_source = '../pengunjung/rangking.php';
+                var analisis_source = '../pengunjung/single-rangking.php';
                 var frame_analisis = $('#analisisFrame');
                 frame_analisis.attr('src', analisis_source);
             }

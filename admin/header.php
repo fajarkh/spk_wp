@@ -27,6 +27,9 @@ $db = $config->getConnection();
 	<!-- CKEditor -->
 	<script type="text/javascript" src="../ckeditor/ckeditor.js"></script>
 
+	<!-- SELECT2 -->
+	<link type="text/css" href="../css/select2-4.1.0/select2.min.css" rel="stylesheet" />
+
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -56,7 +59,7 @@ $db = $config->getConnection();
 					<li><a href="kriteria.php">Kriteria</a></li>
 					<li><a href="bobot.php">Bobot</a></li>
 					<li><a href="alternatif.php">Alternatif</a></li>
-					<li><a href="berita.php">Berita</a></li>
+					<li><a href="rekomendasi.php">Rekomendasi</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#">Selamat datang, <?php echo $_SESSION['username']; ?></a></li>
