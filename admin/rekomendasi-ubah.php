@@ -1,9 +1,4 @@
 <?php
-ob_start();
-session_start();
-if ($_SESSION['name'] != 'admin') {
-    header('location: login.php');
-}
 include_once '../admin/header.php';
 include_once '../includes/rekomendasi.inc.php';
 

@@ -92,16 +92,13 @@
                 "dataType": "json",
                 "dataSrc": ""
             },
-            "columns": [{
-                    "target": 0,
-                    "data": "id_alternatif"
-                },
+            "columns": [
                 {
-                    "target": 1,
+                    "target": 0,
                     "data": "nama_alternatif"
                 },
                 {
-                    "target": 2,
+                    "target": 1,
                     "data": "sts_identifikasi",
                     "render": function(data, type, row) {
                         var bindHtml = data == '1' ? '<i class="fa fa-check text-success">' : '<i class="fa fa-times text-danger"></i>';
@@ -110,7 +107,7 @@
                     }
                 },
                 {
-                    "target": 3,
+                    "target": 2,
                     "data": "id_alternatif",
                     "orderable": false,
                     "render": function(data, type, row) {

@@ -59,18 +59,20 @@ $stmt_listRekomendasi = $alternatif_list_rekomendasi->listRankRekomendasi($alter
                             $unique_post_title[] = $row_listRekomendasi['post_title'];
                         }
                         $unique_post_title = array_unique($unique_post_title);
-                        for ($i = 0; $i < count($unique_post_title); $i++) { ?>
+                        $num = 1;
+                        foreach ($unique_post_title as $i) { ?>
                             <div class="contact-box pb0">
                                 <span class="fa-stack fa-2x">
                                     <i class="fa fa-calendar-o fa-stack-2x"></i>
-                                    <strong class="fa-stack-1x calendar-text"><?php echo $i + 1; ?></strong>
+                                    <strong class="fa-stack-1x calendar-text"><?php echo $num; ?></strong>
                                 </span>
                                 <div class="detail">
-                                    <?php echo $unique_post_title[$i]; ?>
-
+                                    <?php echo $i; ?>
                                 </div>
                             </div>
-                        <?php } ?>
+                        <?php
+                            if ($num++ == 3) break;
+                        } ?>
 
                     </div>
                 </div>

@@ -52,7 +52,7 @@ $alternatif->analisaWP($user_id);
                         <table class="table table-striped" id="tabeldata">
                             <thead>
                                 <tr>
-                                    <th width="10px">Id</th>
+                                    <!-- <th width="10px" >Id</th> -->
                                     <th>Nama</th>
                                     <th>Status Identifikasi</th>
                                     <th width="120px" style="text-align: center;">Aksi</th>
