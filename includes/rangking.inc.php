@@ -70,11 +70,12 @@ class Rangking{
 		return $stmt;
 	}
 	
-	function readMax(){
+	function readMax($id_user){
 		
-		$query = "SELECT sum(vektor_s) as mnr1 FROM wp_alternatif";
+		$query = "SELECT sum(vektor_s) as mnr1 FROM wp_alternatif where id_pengguna = ?";
 
 		$stmt = $this->conn->prepare( $query );
+		$stmt->bindParam(1, $id_user);
 		$stmt->execute();
 
 		return $stmt;

@@ -5,8 +5,8 @@ $alternatif = new Alternatif($db);
 $stmtAlternatif = $alternatif->readAllAdmin();
 $count = $alternatif->countAll();
 
-include_once '../includes/rangking.inc.php';
-$rangking = new Rangking($db);
+// include_once '../includes/rangking.inc.php';
+// $rangking = new Rangking($db);
 
 
 if (isset($_POST['hapus-contengan'])) {

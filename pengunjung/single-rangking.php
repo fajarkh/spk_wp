@@ -118,7 +118,9 @@ $stmt_listRekomendasi = $alternatif_list_rekomendasi->listRankRekomendasi($alter
                         </div>
 
                     </div>
+                    
                 </div>
+                <button class="btn  btn-primary" onclick="location.href='../pengunjung/dashboard.php'">Kembali</button>
             </div>
         </div>
     </div>

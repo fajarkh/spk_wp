@@ -299,7 +299,7 @@ class Alternatif
 			$rangking->has1 = $hasil['bbn'];
 			$rangking->hasil1();
 
-			$stmtmax = $rangking->readMax();
+			$stmtmax = $rangking->readMax($idUser);
 			$maxnr = $stmtmax->fetch(PDO::FETCH_ASSOC);
 			$hasil['bbn'] / $maxnr['mnr1']; //hasil vector v
 			$rangking->has2 = $hasil['bbn'] / $maxnr['mnr1'];

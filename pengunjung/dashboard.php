@@ -3,8 +3,7 @@ include_once '../pengunjung/header.php';
 include_once '../includes/alternatif.inc.php';
 
 $alternatif = new Alternatif($db); 
-
-$alternatif->analisaWP($user_id);
+ $alternatif->analisaWP($user_id);
 $alternatif->analisaWP($user_id);
 ?>
 
