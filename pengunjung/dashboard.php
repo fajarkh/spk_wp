@@ -23,8 +23,8 @@ $alternatif->analisaWP($user_id);
                         <input type="text" class="form-control" id="nama-ikan">
                     </div>
                     <div class="form-group">
-                        <label for="keterangan-ikan" class="col-form-label">Keterangan Tambahan :</label>
-                        <textarea class="form-control" id="keterangan-ikan"></textarea>
+                        <!-- <label for="keterangan-ikan" class="col-form-label">Keterangan Tambahan :</label> -->
+                        <input type="hidden" class="form-control" id="keterangan-ikan"></input>
                     </div>
                 </form>
             </div>
